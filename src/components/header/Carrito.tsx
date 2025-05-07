@@ -1,11 +1,11 @@
-import React, { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { fetchGuittars, type guitarr } from '../../Context/fetchGuittars'
 
 
-type CarritoProps = {
+// type CarritoProps = {
 
 
-}
+// }
 
 
 
