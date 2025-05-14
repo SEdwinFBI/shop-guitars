@@ -1,5 +1,7 @@
-import { FC } from 'react'
-import { fetchGuittars, type guitarr } from '../../Context/fetchGuittars'
+import { FC, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '../../store/store'
+import { decrementItem, deleteToCart, incrementtItem } from '../../store/slice/ShoppingSlice'
 
 
 // type CarritoProps = {
@@ -10,8 +12,23 @@ import { fetchGuittars, type guitarr } from '../../Context/fetchGuittars'
 
 
 const Carrito: FC = () => {
-  const guitarr1: guitarr = fetchGuittars()[0]
 
+  const dispatch = useDispatch<AppDispatch>()
+  const cart = useSelector((state: RootState) => state.shopping)
+
+  useEffect(() => {
+    console.log(cart)
+  }, [cart])
+
+  const handleDecrement = (id: number) => {
+    dispatch(decrementItem(id))
+  }
+  const handleIncrement = (id: number) => {
+    dispatch(incrementtItem(id))
+  }
+  const handleDelete = (id: number) => {
+    dispatch(deleteToCart(id))
+  }
   return (
     // <div className='w-full h-full bg-white  rounded-2xl  shadow-2xl' hidden={!hidden} onClick={()=>onHidden(false)} >
     <div className='w-full h-full bg-white  shadow-2xl p-4' >
@@ -23,41 +40,55 @@ const Carrito: FC = () => {
               <h1>Nombre</h1>
               <h1>Precio</h1>
               <h1>cantidad</h1>
-              <h1>eli</h1>
+              <h1></h1>
             </div>
             <hr className='bg-gray-300 mt-2' />
             <div className='max-h-51 w-full overflow-y-auto'>
-             {
-              Array.from({length:10}).map((_i,index)=>(
-                <div key={index } className=' w-full  grid grid-cols-5 text-xs mt-2  '>
-                <img className='h-20' src={"../../../public/img/" + guitarr1.image + ".jpg"} alt="guitarra " />
-                <h1>{guitarr1.name}</h1>
-                <h1><strong>${guitarr1.price}</strong></h1>
-                <div className='items-start'>
-                  <div className='flex flex-row w-full justify-between  items-center' >
-                    <button className='bg-black text-white w-4 h-6 font-extrabold'>
-                      +
-                    </button>
-                    <h1>1</h1>
-                    <button className='bg-black text-white w-4 h-6 font-extrabold'>
-                      -
-                    </button>
+              {
+                cart.items.map((item, index) => {
 
-                  </div>
+                  return (
 
-                </div>
+                    <div key={index} className=' w-full  grid grid-cols-5 text-xs mt-2  '>
+                      <img className='h-20' src={"/img/" + item.guitar.image + ".jpg"} alt="guitarra " />
+                      <h1>{item.guitar.name}</h1>
+                      <h1><strong>${item.guitar.price}</strong></h1>
+                      <div className='items-start'>
+                        <div className='flex flex-row w-full justify-between  items-center' >
+                          <button
+                            onClick={() => handleIncrement(item.guitar.id)}
+                            className='bg-black  active:bg-gray-700 text-white w-4 h-6 font-extrabold'
+                          >
+                            +
+                          </button>
+                          <h1>{item.quantity}</h1>
+                          <button
+                            onClick={() => handleDecrement(item.guitar.id)}
+                            className='bg-black active:bg-gray-700 text-white w-4 h-6 font-extrabold'
+                          >
+                            -
+                          </button>
+                        </div>
+                      </div>
+                      <div className='flex flex-col content-center items-center'>
+                        <button
+                          onClick={() => handleDelete(item.guitar.id)}
+                          className='cursor-pointer w-5 h-5 bg-red-700  active:bg-red-500 rounded-2xl text-white flex justify-center content-center'
+                        >
+                          <div>x</div>
+                        </button>
+                      </div>
+                    </div>
+                  )
+                })
+              }
 
-              </div>
-              )
-            )
-             }
-              
             </div>
           </div>
           <div className='text-end'>
-          <h1>
-            total a pagar: <strong>${guitarr1.price}</strong>
-          </h1>
+            <h1>
+              total a pagar: <strong>${cart.total}</strong>
+            </h1>
           </div>
         </div>
         <div className=' bg-white py-1'>

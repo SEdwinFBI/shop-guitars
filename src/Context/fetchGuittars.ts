@@ -1,5 +1,5 @@
 import { db } from './../../utils/guitarrs';
-export type guitarr = {
+export type guitar = {
     id: number;
     name: string;
     image: string;
@@ -14,7 +14,7 @@ export type guitarr = {
 //         }, 1000); 
 //       })
 // }
-export const fetchGuittars = (): guitarr[]=>{
+export const fetchGuittars = (): guitar[]=>{
     return db
 }
 

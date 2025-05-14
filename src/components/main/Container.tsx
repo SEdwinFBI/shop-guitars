@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
 import Card from "../cards/Card"
-import { fetchGuittars, guitarr } from "../../Context/fetchGuittars";
+import { fetchGuittars, guitar } from "../../Context/fetchGuittars";
 
 
 
 const Container = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [data, setData] = useState<guitarr[] | null>(null);
+  const [data, setData] = useState<guitar[] | null>(null);
 
   const getData =  () => {
     setIsLoading(true);
-    setData( fetchGuittars());
+    setTimeout(()=> setData( fetchGuittars()), 300)
     setIsLoading(false);
       
     
