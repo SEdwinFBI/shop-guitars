@@ -16,6 +16,7 @@ function App() {
 
           <Container />
         </section>
+        <footer className='w-full flex flex-col text-center text-sm mb-3'>  &copy; 2025 Guitar Guys by Edwin Baquiax. Todos los derechos reservados. </footer>
       </Provider>
     </>
   )
