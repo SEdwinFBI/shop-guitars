@@ -17,7 +17,7 @@ const Card:FC<ICard> = ({guitarr}) => {
   return (
     <div className=' shadow-md rounded-2xl p-4 grid grid-cols-2 '>
       <div className='w-full flex justify-center items-center  '>
-        <img className='w-20' src={`/public/img/${guitarr.image}.jpg`} alt="guitarra" />
+        <img className='w-20' src={`./img/${guitarr.image}.jpg`} alt="guitarra" />
       </div>
       <div className=''>
         <h2 className='font-bold text-lg'>{guitarr.name}</h2>

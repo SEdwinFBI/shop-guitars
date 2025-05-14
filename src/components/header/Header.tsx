@@ -13,7 +13,7 @@ const Header = () => {
                 </div>
 
                 <div>
-                    <img className="w-10 h-8 " src="/img/carrito.png" alt="" onClick={() => setShow((prev) => !prev)} />
+                    <img className="w-10 h-8 " src="./img/carrito.png" alt="" onClick={() => setShow((prev) => !prev)} />
                     <div className='w-70 h-auto absolute translate-y-1 -translate-x-5/6' hidden={show} >
                         {/* <div className='flex flex-col w-full h-20 text-center justify-center bg-white'>
                             <h1>carrito vacio</h1>
@@ -24,7 +24,7 @@ const Header = () => {
 
             </div>
             <div className='relative w-full h-auto'>
-                <img className='w-full h-30 object-cover filter shadow-lg' src="/img/header.jpg" alt="guitarra" />
+                <img className='w-full h-30 object-cover filter shadow-lg' src="./img/header.jpg" alt="guitarra" />
                 <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
             </div>
         </>
