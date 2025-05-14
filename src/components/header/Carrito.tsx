@@ -50,7 +50,7 @@ const Carrito: FC = () => {
                   return (
 
                     <div key={index} className=' w-full  grid grid-cols-5 text-xs mt-2  '>
-                      <img className='h-20' src={"/img/" + item.guitar.image + ".jpg"} alt="guitarra " />
+                      <img className='h-20' src={"./public/img/" + item.guitar.image + ".jpg"} alt="guitarra " />
                       <h1>{item.guitar.name}</h1>
                       <h1><strong>${item.guitar.price}</strong></h1>
                       <div className='items-start'>
