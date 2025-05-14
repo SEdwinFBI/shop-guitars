@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../store/store'
 import { decrementItem, deleteToCart, incrementtItem } from '../../store/slice/ShoppingSlice'
@@ -16,9 +16,7 @@ const Carrito: FC = () => {
   const dispatch = useDispatch<AppDispatch>()
   const cart = useSelector((state: RootState) => state.shopping)
 
-  useEffect(() => {
-    console.log(cart)
-  }, [cart])
+
 
   const handleDecrement = (id: number) => {
     dispatch(decrementItem(id))

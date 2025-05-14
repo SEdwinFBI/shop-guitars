@@ -22,14 +22,14 @@ export const ShoppingSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action: PayloadAction<guitar>) => {
-            console.log(action.payload)
+            //console.log(action.payload)
             const existGuitar = state.items.find(item => action.payload.id == item.guitar.id);
             if (existGuitar) {
-                console.log("exist")
+                //console.log("exist")
                 existGuitar.quantity += 1;
                 existGuitar.total = existGuitar.quantity * existGuitar.guitar.price;
             } else {
-                console.log("push new")
+                //console.log("push new")
                 state.items.push({
                     guitar: action.payload,
                     quantity: 1,
