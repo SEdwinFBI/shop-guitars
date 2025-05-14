@@ -9,8 +9,11 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <section className='flex justify-center items-center flex-col'>
+        <header className='fixed w-screen'>
           <Header />
+        </header>
+        <section className='flex justify-center items-center flex-col pt-30'>
+
           <Container />
         </section>
       </Provider>

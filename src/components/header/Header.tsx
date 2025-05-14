@@ -7,17 +7,14 @@ const Header = () => {
 
     return (
         <>
-            <div className='absolute top-0 z-10 flex  justify-between items-center w-full h-30 px-40'>
+            <div className='absolute top-0 z-10 flex flex-row justify-between items-center w-full h-30 '>
                 <div className='text-amber-50' >
                     <img className="w-30" src="https://s3.us-west-2.amazonaws.com/sgs.pressable-guitarguys/wp-content/uploads/2020/11/25140810/small_logo.png" alt="logo" />
                 </div>
 
                 <div>
-                    <img className="w-10 h-8 " src="./img/carrito.png" alt="" onClick={() => setShow((prev) => !prev)} />
-                    <div className='w-70 h-auto absolute translate-y-1 -translate-x-5/6' hidden={show} >
-                        {/* <div className='flex flex-col w-full h-20 text-center justify-center bg-white'>
-                            <h1>carrito vacio</h1>
-                        </div> */}
+                    <img className="w-10  -translate-x-6/6" src="./img/carrito.png" alt="" onClick={() => setShow((prev) => !prev)} />
+                    <div className='w-70 h-auto absolute translate-y-1 -translate-x-6/6' hidden={show} >
                         <Carrito />
                     </div>
                 </div>
