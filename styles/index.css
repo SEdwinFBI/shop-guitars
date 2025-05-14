@@ -6,3 +6,7 @@ body, #root {
     
 
   }
+
+.bounce-once {
+  animation: spin 2s linear 0.5  ; 
+}

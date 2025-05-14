@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../store/store'
 import { decrementItem, deleteToCart, incrementtItem } from '../../store/slice/ShoppingSlice'
+import ItemCart from '../cards/ItemCart'
 
 
 // type CarritoProps = {
@@ -46,37 +47,14 @@ const Carrito: FC = () => {
                 cart.items.map((item, index) => {
 
                   return (
+                    <ItemCart
+                      key={index}
+                      handleDecrement={handleDecrement}
+                      handleIncrement={handleIncrement}
+                      handleDelete={handleDelete}
+                      item={item}
+                    />
 
-                    <div key={index} className=' w-full  grid grid-cols-5 text-xs mt-2  '>
-                      <img className='h-20' src={"./img/" + item.guitar.image + ".jpg"} alt="guitarra " />
-                      <h1>{item.guitar.name}</h1>
-                      <h1><strong>${item.guitar.price}</strong></h1>
-                      <div className='items-start'>
-                        <div className='flex flex-row w-full justify-between  items-center' >
-                          <button
-                            onClick={() => handleIncrement(item.guitar.id)}
-                            className='bg-black  active:bg-gray-700 text-white w-4 h-6 font-extrabold'
-                          >
-                            +
-                          </button>
-                          <h1>{item.quantity}</h1>
-                          <button
-                            onClick={() => handleDecrement(item.guitar.id)}
-                            className='bg-black active:bg-gray-700 text-white w-4 h-6 font-extrabold'
-                          >
-                            -
-                          </button>
-                        </div>
-                      </div>
-                      <div className='flex flex-col content-center items-center'>
-                        <button
-                          onClick={() => handleDelete(item.guitar.id)}
-                          className='cursor-pointer w-5 h-5 bg-red-700  active:bg-red-500 rounded-2xl text-white flex justify-center content-center'
-                        >
-                          <div>x</div>
-                        </button>
-                      </div>
-                    </div>
                   )
                 })
               }
@@ -90,7 +68,10 @@ const Carrito: FC = () => {
           </div>
         </div>
         <div className=' bg-white py-1'>
-          <button className='cursor-pointer w-full h-10 bg-black active:bg-gray-700 text-white'>Comprar ahora!</button>
+          <button 
+          className='cursor-pointer w-full h-10 bg-black active:bg-gray-700 disabled:bg-gray-700 text-white'
+          disabled={cart.total == 0? true:false}
+          >Comprar ahora!</button>
         </div>
       </div>
     </div>
