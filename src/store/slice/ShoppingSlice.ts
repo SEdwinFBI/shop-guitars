@@ -12,10 +12,13 @@ type cartState = {
     total: number
 }
 
-const initialState: cartState = {
+const state: string = localStorage.getItem("cart") || "";
+const initialStateNoneCache: cartState = {
     items: [],
     total: 0
 }
+
+const initialState: cartState = state !== "" ? JSON.parse(state) : initialStateNoneCache
 
 export const ShoppingSlice = createSlice({
     name: "shopping",
@@ -37,12 +40,13 @@ export const ShoppingSlice = createSlice({
                 })
             }
             state.total = state.items.reduce((sum, item) => sum + item.total, 0);
-
+            localStorage.setItem("cart", JSON.stringify(state))
         },
         deleteToCart: (state, action: PayloadAction<number>) => {
             state.items = state.items.filter(item => item.guitar.id !== action.payload)
 
             state.total = state.items.reduce((sum, item) => sum + item.total, 0);
+            localStorage.setItem("cart", JSON.stringify(state))
         },
         decrementItem: (state, action: PayloadAction<number>) => {
             const existGuitar = state.items.find(item => action.payload == item.guitar.id);
@@ -53,6 +57,7 @@ export const ShoppingSlice = createSlice({
                 state.items = state.items.filter(item => item.guitar.id !== action.payload)
             }
             state.total = state.items.reduce((sum, item) => sum + item.total, 0);
+            localStorage.setItem("cart", JSON.stringify(state))
         },
         incrementtItem: (state, action: PayloadAction<number>) => {
             const existGuitar = state.items.find(item => action.payload == item.guitar.id);
@@ -61,11 +66,12 @@ export const ShoppingSlice = createSlice({
                 existGuitar.total = existGuitar.quantity * existGuitar.guitar.price;
             }
             state.total = state.items.reduce((sum, item) => sum + item.total, 0);
+            localStorage.setItem("cart", JSON.stringify(state))
         }
     }
 })
 
-export const { addToCart, decrementItem, deleteToCart,incrementtItem } = ShoppingSlice.actions;
+export const { addToCart, decrementItem, deleteToCart, incrementtItem } = ShoppingSlice.actions;
 
 export default ShoppingSlice.reducer;
 

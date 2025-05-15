@@ -58,13 +58,19 @@ const Carrito: FC = () => {
                   )
                 })
               }
+              {
+                cart.total == 0 && <h1>Carrito vacio..</h1>
+              }
 
             </div>
           </div>
           <div className='text-end'>
-            <h1>
-              total a pagar: <strong>${cart.total}</strong>
-            </h1>
+                          {
+                cart.total != 0 && <h1>
+                              total a pagar: <strong>${cart.total}</strong>
+                             </h1>
+              }
+            
           </div>
         </div>
         <div className=' bg-white py-1'>
